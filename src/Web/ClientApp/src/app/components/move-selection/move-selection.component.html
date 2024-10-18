@@ -1,0 +1,21 @@
+<h2 class="mb-3">Round {{currentRound}}</h2>
+<h4 class="mb-3">{{playerName}}</h4>
+
+<form class="needs-validation" novalidate [formGroup]="selectionForm">
+    <div class="row g-3 mb-3">
+        <div class="col">
+            <label class="form-label" style="vertical-align: sub;" [ngClass]="{'text-danger': selectionForm.touched &&
+            selectionForm.get('movement').invalid}">Select Move</label>
+        </div>
+        <div class="col">
+            <select class="form-select" formControlName="movement" [ngClass]="{'is-invalid': selectionForm.touched && selectionForm.get('movement').invalid, 
+            'is-valid': selectionForm.touched && selectionForm.get('movement').valid}">
+                <option *ngFor="let move of movements" [value]="move">{{move}}</option>
+            </select>
+            <span class="invalid-feedback">
+                Please select a valid Move.
+            </span>
+        </div>
+    </div>
+    <button class="w-100 btn btn-primary btn-lg" (click)="moveSelection()" type="submit">OK</button>
+</form>

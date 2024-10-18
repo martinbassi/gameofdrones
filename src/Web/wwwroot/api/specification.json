@@ -1,0 +1,170 @@
+{
+  "x-generator": "NSwag v14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GameOfDrones API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/Games": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "operationId": "GetGames",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "operationId": "CreateGame",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGameCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Settings": {
+      "get": {
+        "tags": [
+          "Settings"
+        ],
+        "operationId": "GetSettings",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GameDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "winner": {
+            "type": "string"
+          },
+          "opponent": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CreateGameCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "winner": {
+            "type": "string"
+          },
+          "opponent": {
+            "type": "string"
+          }
+        }
+      },
+      "SettingDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "movements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GameRuleDto"
+            }
+          }
+        }
+      },
+      "GameRuleDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "movement": {
+            "type": "string"
+          },
+          "oppMovement": {
+            "type": "string"
+          },
+          "resultId": {
+            "$ref": "#/components/schemas/ResultId"
+          },
+          "result": {
+            "type": "string"
+          }
+        }
+      },
+      "ResultId": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Win",
+          "Lose",
+          "Draw"
+        ],
+        "enum": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  }
+}

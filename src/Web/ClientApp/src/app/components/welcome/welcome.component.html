@@ -1,0 +1,29 @@
+<h2 class="mb-3">Enter Player Names</h2>
+
+<form class="needs-validation" novalidate [formGroup]="form.group">
+    <div class="row g-3 mb-3">
+        <div class="col">
+            <label class="form-label" style="vertical-align: sub;" [ngClass]="{'text-danger': form.controls.player1.touched && form.controls.player1.invalid}">Player 1</label>
+        </div>
+        <div class="col">
+            <input type="text" [formControl]="form.controls.player1" class="form-control" [ngClass]="{'is-invalid': form.controls.player1.touched && form.controls.player1.invalid,
+            'is-valid': form.controls.player1.touched && form.controls.player1.valid}">
+            <span class="invalid-feedback">
+                Player Name cannot be empty.
+            </span>
+        </div>
+    </div>
+    <div class="row g-3 mb-3">
+        <div class="col">
+            <label class="form-label" style="vertical-align: sub;" [ngClass]="{'text-danger': form.controls.player2.touched && form.controls.player2.invalid}">Player 2</label>
+        </div>
+        <div class="col">
+            <input type="text" [formControl]="form.controls.player2" class="form-control" [ngClass]="{'is-invalid': form.controls.player2.touched && form.controls.player2.invalid,
+            'is-valid': form.controls.player2.touched && form.controls.player2.valid}">
+            <span class="invalid-feedback">
+                Player Name cannot be empty.
+            </span>
+        </div>
+    </div>
+    <div class="text-center"><button class="w-100 btn btn-primary btn-lg" (click)="startGame()" type="button">Start</button></div>
+</form>
