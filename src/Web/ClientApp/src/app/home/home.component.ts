@@ -43,6 +43,7 @@ export class HomeComponent {
   finishGame() {
     this.publishGame();
     this.resetRound();
+    this.currentRound = -1;
   }
 
   startNextRound() {
@@ -71,6 +72,7 @@ export class HomeComponent {
   }
 
   getResult() {
+    debugger;
     const [move, opMove] = this.playerMovements;
     const rule = this.gameRules.find(x => x.movement === move && x.oppMovement === opMove);
     if (!rule) return;
@@ -93,6 +95,7 @@ export class HomeComponent {
   }
 
   existWinner(): boolean {
+    debugger;
     const winnerPlayer = this.players.find(p => p.score === 3);
     this.winner = winnerPlayer?.name || '';
     return !!this.winner;
